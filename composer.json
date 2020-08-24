@@ -1,0 +1,27 @@
+{
+    "name": "aldhix/altaradmin",
+    "description": "Paket Admin Auth dan Resource",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Aldhi Xar",
+            "email": "aldhi.x@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Aldhix\\Altaradmin\\": "src"
+        },
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Aldhix\\Altaradmin\\ServiceProvider"
+            ],
+            "aliases": {
+                "Altaradmin": "Aldhix\\Altaradmin\\Altaradmin"
+            }
+        }
+    }
+}
