@@ -2,7 +2,7 @@
 Paket Admin Auth dan Resource. Paket yang terintegrasi dengan Altar ([https://github.com/aldhix/altar](https://github.com/aldhix/altar))
 
 ## Instalasi
->Sebelum memulai Altar sudah terinstal dan sudah mengkofigurasi database di file `.env` dan `config/database.php` 
+Pastikan Altar sudah terinstal dan sudah mengkonfigurasi database di file `.env` dan `config/database.php` apabila tahap ini belum dilakukan jangan dulu ketahap berikutnya. 
 
 Instal terlebih dahulu Laravel/UI, apabila sudah menginstallnya silahkan lewati langkah ini. 
 `composer require laravel/ui`
