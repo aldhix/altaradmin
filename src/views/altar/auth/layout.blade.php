@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>PKP Instrument | @yield('title')</title>
+  <title>AdminLTE | @yield('title')</title>
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{{url('AdminLTE/plugins/fontawesome-free/css/all.min.css')}}">

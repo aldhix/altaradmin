@@ -7,11 +7,11 @@ use Auth;
 class Altaradmin
 {
  
-   public static function resource($prefix = 'admin')
+   public static function resource($prefix = 'admin',$middleware=['auth:admin'])
    {
        Route::group([
             'prefix'=>$prefix,
-            'middleware'=>['auth:admin'],
+            'middleware'=>$middleware,
             'namespace'=>'\Aldhix\\Altaradmin\\Controllers',
         ], function() {
             Route::resource('admin','AdminController');

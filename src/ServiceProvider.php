@@ -24,12 +24,14 @@ class ServiceProvider extends Service
      */
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__.'/views', 'admin');
+        $this->loadViewsFrom(__DIR__.'/views', 'altar');
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
         $this->loadFactoriesFrom(__DIR__.'/database/factories');
 
         $this->publishes([
             __DIR__.'/publish-controllers' => app_path('/Http/Controllers'),
+            __DIR__.'/views/altar' => resource_path('views/altar'),
+
         ]);
     }
 }

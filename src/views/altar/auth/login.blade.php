@@ -1,4 +1,4 @@
-@extends('admin::auth.layout')
+@extends('altar.auth.layout')
 @section('title','Login')
 @section('class-body','login-page')
 @section('content')

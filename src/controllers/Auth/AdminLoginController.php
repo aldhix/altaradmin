@@ -21,7 +21,7 @@ class AdminLoginController extends Controller
 
     public function loginForm()
     {
-        return view('admin::auth.login');
+        return view('altar.auth.login');
     }
 
     public function login(Request $request)
