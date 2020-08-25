@@ -15,6 +15,12 @@ Administrator
          @method('put')
         <x-alt-input label="Full Name" name="name" value="{{$data->name}}" inline="true" />
         <x-alt-input label="Email Address" name="email" type="email" value="{{$data->email}}" inline="true" />
+        <x-alt-select label="Level Admin" name="level" value="{{$data->level}}"
+         :option="[
+            ['value'=>'admin','label'=>'Administrator'],
+            ['value'=>'current','label'=>'Current Admin'],
+         ]"
+         inline="true" />
         <x-alt-input label="New Password" name="password" type="password" inline="true">
           <x-slot name="feedback">
              <div class="form-text text-muted">Type if you want to change a new password.</div>

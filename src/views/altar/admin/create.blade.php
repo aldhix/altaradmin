@@ -14,6 +14,12 @@ Administrator
          @csrf()
         <x-alt-input label="Full Name" name="name" inline="true" />
         <x-alt-input label="Email Address" name="email" type="email" inline="true" />
+        <x-alt-select label="Level Admin" name="level" 
+         :option="[
+            ['value'=>'admin','label'=>'Administrator'],
+            ['value'=>'current','label'=>'Current Admin'],
+         ]"
+         inline="true" />
         <x-alt-input label="Password" name="password" type="password" inline="true" />
         <x-alt-input label="Confirm Password" name="password_confirmation" type="password" inline="true" />
         <x-slot name="footer">

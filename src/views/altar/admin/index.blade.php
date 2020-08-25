@@ -36,20 +36,27 @@
         </x-slot>
 
         <x-slot name="thead">
-          <th>Name</th><th>Email</th><th>&nbsp;</th>
+
         </x-slot>
         
-        @foreach($data as $td)
+        @foreach($data as $e)
         <tr>
-          <td>{{$td['name']}}</td><td>{{$td['email']}}</td>
+          <td width="110">
+            <img src="{{ url('altar/images/profile/'.$e->photo) }}" class="img-thumbnail" width="100">
+          </td>
           <td>
-          @if(Auth::guard('admin')->id() == $td['id'])
+          Name :  <strong>{{$e->name}} </strong> <br>
+          Email : {{$e->email}} <br>
+          Level : {{ $e->level }}
+          </td>
+          <td>
+          @if(Auth::guard('admin')->id() == $e->id && $e->id != 1 )
             <x-alt-action 
-            :edit="route('admin.edit',['admin'=>$td['id']])" />
-          @elseif( $td['id'] != 1)
+            :edit="route('admin.edit',['admin'=>$e->id])" />
+          @elseif( $e->id != 1)
             <x-alt-action 
-            :edit="route('admin.edit',['admin'=>$td['id']])" 
-            :delete="route('admin.destroy',['admin'=>$td['id']])" />
+            :edit="route('admin.edit',['admin'=>$e->id])" 
+            :delete="route('admin.destroy',['admin'=>$e->id])" />
           @endif
           </td>
         </tr>

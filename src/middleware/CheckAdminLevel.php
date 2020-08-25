@@ -14,11 +14,15 @@ class CheckAdminLevel
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next, $level = null)
+    public function handle($request, Closure $next, ... $roles)
     {
-        if(Auth::guard('admin')->check() && Auth::guard('admin')->user()->level == $level) {
+        $check = Auth::guard('admin')->check();
+        $level = Auth::guard('admin')->user()->level;
+
+        if($check && in_array($level, $roles)) {
             return $next($request);    
         }
+
 
         return abort(404);
         
