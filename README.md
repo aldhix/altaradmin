@@ -144,3 +144,23 @@ Contoh hanya untuk level :
     @if( Altaradmin::level('admin','editor') )
     ................
     @endif
+
+Daftar Route yang terdapat pada `Altaradmin::resource(prefix, [middleware_1,middleware_2,middleware_n])` :
+
+| Method | Route Name | 
+|--|--|
+| GET | admin.home |
+| GET/PUT | admin.profile |
+| GET |admin.index  |
+| GET | admin.create |
+| POST| admin.store |
+| GET | admin.edit |
+| PUT | admin.update |
+| DELETE | admin.destroy |
+
+Daftar Route yang terdapat pada `Altaradmin::routes(prefix)` :
+
+| Method | Route Name | 
+|--|--|
+| GET/POST | admin.login |
+| POST | admin.logout |
