@@ -116,20 +116,31 @@ Registrasi Middleware check level admin pada `kernel` di file `app\Http\Kernel.p
 Pada `routes\web.php` tambahkan perintah. Langkah ini untuk memanggil route admin. Bertujuan untuk mengujicoba
 
     Route::group([
-		'prefix'=>'admin',
-		'middleware'=>['auth:admin','level:super'],
-	], function() {
-	    Demo::routes();
+        'prefix'=>'admin',
+        'middleware'=>['auth:admin','level:super,admin'],
+    ], function() {
+        Demo::routes();
     });
-    
-    Altaradmin::resource('admin');
+    Altaradmin::resource('admin',['auth:admin','level:super']);
     Altaradmin::routes('admin');
 
-
-Membuat logout bisa menggunakan link contoh sebagai berikut:
+Membuat logout gunakan form yang disembuyikan contoh menggunakan link :
 
     <a href="{{route('admin.logout')}}" 
 	    onclick="event.preventDefault(); document.getElementById('logout-page').submit();" 
 	    class="dropdown-item"> Logout
 	    <form id="logout-page" action="{{ route('admin.logout') }}" method="post" style="display: none;">@csrf</form>
     </a>
+
+Pengaturan level pada blade dengan perintah `Altaradmin::leve('level_1',level_2','level_n')`, contoh level peruntahkan `admin` :
+Contoh hanya untuk level :
+
+    @if( Altaradmin::level('admin') )
+    ................
+    @endif
+  
+  Contoh untuk lebih dari satu level : 
+
+    @if( Altaradmin::level('admin','editor') )
+    ................
+    @endif
