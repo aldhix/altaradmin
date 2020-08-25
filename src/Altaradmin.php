@@ -23,7 +23,7 @@ class Altaradmin
             'middleware'=>$middleware,
             'namespace'=>'\Aldhix\\Altaradmin\\Controllers',
         ], function() {
-            Route::resource('admin','AdminController');
+            Route::resource('admin','AdminController',['except'=>['show']]);
         });
        
        
