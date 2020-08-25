@@ -2,17 +2,18 @@
 Paket Admin Auth dan Resource. Paket yang terintegrasi dengan Altar ([https://github.com/aldhix/altar](https://github.com/aldhix/altar))
 
 ## Instalasi
+Pastikan Altar sudah terinstal dan sudah mengkonfigurasi database di file `.env` dan `config/database.php` apabila tahap ini belum dilakukan jangan dulu ketahap berikutnya. 
 
-Instal Laravel/UI, apabila sudah mengistallnya silahkan lewati langkah ini. 
+Instal terlebih dahulu Laravel/UI, apabila sudah menginstallnya silahkan lewati langkah ini. 
 `composer require laravel/ui`
 
-Instal adminlte dengan composer.
+Instal Adminaltar dengan composer.
 `composer require aldhix/altaradmin`
 
 Publish Provider Service .
 `php artisan vendor:publish --provider=Aldhix\Altaradmin\ServiceProvider`
 
-Untuk menghindari kesalah pada saat migrate, pada file `app\Providers\AppServiceProvider.php` tambahkan `defaultStringLength` menjadi 191.
+Untuk menghindari kesalahan pada saat migrate, pada file `app\Providers\AppServiceProvider.php` tambahkan `defaultStringLength` menjadi 191.
 
     use Illuminate\Support\Facades\Schema;
     ..................
@@ -24,7 +25,7 @@ Untuk menghindari kesalah pada saat migrate, pada file `app\Providers\AppService
 Buat Admin Seeder.
 `php artisan make:seeder UserSeeder`
 
-Setelah `AdminSeeder` dibuat  tambahkan peritah untuk membuat admin.
+Setelah `AdminSeeder` dibuat tambahkan perintah untuk membuat record admin dengan seeder.
 
     use Illuminate\Support\Str;
     use Aldhix\Altaradmin\Models\Admin;
@@ -54,7 +55,7 @@ Lakukan perintah migrate dan seed.
     php artisan migrate
     php artisan db:seed
 
-Konfigurasi auth di file `config\auth.php` tambahkan perintah pada bagian guards, providers, dan passwords
+Konfigurasi auth di file `config\auth.php` tambahkan perintah pada bagian guards, providers, dan passwords.
 
     'guards' => [
 	    ............
@@ -82,7 +83,7 @@ Konfigurasi auth di file `config\auth.php` tambahkan perintah pada bagian guards
     ],
 
 
-Ubah dibagian midlleware  Authenticate pada file `app\Http\Middleware\Authenticate.php` pada method `redirectTo` tambahkan perintah dibagian paling atas. Apabila user belum login ketika mengakses prefix admin akan diredirect ke `route(admin.login)`.
+Ubah dibagian middleware Authenticate di file `app\Http\Middleware\Authenticate.php` pada method `redirectTo` tambahkan perintah dibagian paling atas. Ini bertujuan apabila user belum login ketika mengakses prefix admin akan diredirect ke `route(admin.login)`.
 
     protected function redirectTo($request)
     {
@@ -94,7 +95,7 @@ Ubah dibagian midlleware  Authenticate pada file `app\Http\Middleware\Authentica
 
 
 
-Masih pada bagian middleware ubah RedirectIfAuthenticated pada file `app\Http\Middleware\RedirectIfAuthenticated.php` pada method `handle` tambahkan perintah  dibagian paling atas. Apabila user melakukan login dan mengakses halaman admin/login maka akan diredirect ke `route('admin.home')`.
+Masih pada bagian middleware ubah RedirectIfAuthenticated pada file `app\Http\Middleware\RedirectIfAuthenticated.php` pada method `handle` tambahkan perintah  dibagian paling atas. Ini bertujuan apabila user melakukan login tetapi mengakses halaman `admin/login` maka akan diredirect ke `route('admin.home')`.
 
     public function handle($request, Closure $next, $guard = null)
     {
@@ -104,7 +105,7 @@ Masih pada bagian middleware ubah RedirectIfAuthenticated pada file `app\Http\Mi
 	    ................
     }
 
-Registrasi Middleware check level pada kernel di file `app\Http\Kernel.php` tambahkan dibagian `$routeMiddleware`.
+Registrasi Middleware check level admin pada `kernel` di file `app\Http\Kernel.php` tambahkan dibagian `$routeMiddleware`.
 
     protected $routeMiddleware = [
 	    ......................
@@ -112,7 +113,7 @@ Registrasi Middleware check level pada kernel di file `app\Http\Kernel.php` tamb
     ];
 
 
-Pada `routes\web.php` tambahkan perintah. Langkah ini untuk memanggil route admin.
+Pada `routes\web.php` tambahkan perintah. Langkah ini untuk memanggil route admin. Bertujuan untuk mengujicoba
 
     Route::group([
 		'prefix'=>'admin',
@@ -125,7 +126,7 @@ Pada `routes\web.php` tambahkan perintah. Langkah ini untuk memanggil route admi
     Altaradmin::routes('admin');
 
 
-Untuk membuat logout, bisa menggunakan link contoh sebagai berikut,
+Membuat logout bisa menggunakan link contoh sebagai berikut:
 
     <a href="{{route('admin.logout')}}" 
 	    onclick="event.preventDefault(); document.getElementById('logout-page').submit();" 
