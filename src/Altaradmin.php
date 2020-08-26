@@ -54,6 +54,16 @@ class Altaradmin
       }
    }
 
+   public static function user()
+   {
+      return Auth::guard('admin')->user();
+   }
+
+   public static function id()
+   {
+      return Auth::guard('admin')->id();
+   }
+
    public static function imagefitcrop($file, $filename, $fit_size = 200)
    {
       $file = $file;
