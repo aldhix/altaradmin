@@ -8,6 +8,16 @@ class Altaradmin
 {
    public static function routes($prefix = 'admin', $middleware = null)
    {
+    
+      Route::group([
+            'prefix'=>$prefix,
+            'middleware'=>['auth:admin'],
+        ], function() {
+            Route::get('/','AdminHomeController@index')->name('admin.home');
+            Route::get('admin/profile','AdminController@profile')->name('admin.profile');
+            Route::put('admin/profile','AdminController@updateProfile');
+       });
+
       Route::group([
         'prefix' => $prefix,
         'namespace'=>'Admin\Auth',
@@ -16,14 +26,6 @@ class Altaradmin
           Route::post('login','AdminLoginController@login');
           Route::post('logout','AdminLoginController@logout')->name('admin.logout');
       });
-    
-      Route::group([
-            'prefix'=>$prefix,
-            'middleware'=>['auth:admin'],
-        ], function() {
-            Route::get('admin/profile','AdminController@profile')->name('admin.profile');
-            Route::put('admin/profile','AdminController@updateProfile');
-       });
 
       if($middleware == null){
         $middleware = ['auth:admin'];
