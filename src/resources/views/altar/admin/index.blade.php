@@ -1,6 +1,6 @@
-@extends('altar.layouts.app')
+@extends('alt::page')
 @section('title','Administrator')
-@section('content-header')
+@section('heading')
 <i class="fas fa-user-friends"></i> Administrator
 @endsection
 @section('content')
@@ -47,7 +47,7 @@
           <td>
           Name :  <strong>{{$e->name}} </strong> <br>
           Email : {{$e->email}} <br>
-          Level : {{ $e->level }}
+          Level : {{ $e->role }}
           </td>
           <td>
           @if(Auth::guard('admin')->id() == $e->id && $e->id != 1 )
@@ -64,7 +64,7 @@
         
         <x-slot name="footer">
           <div class="float-left pl-2 pt-2">Total : {{$data->total()}}</div>
-          {{ $data->onEachSide(2)->appends(['keyword' => request()->keyword ])->links('altar.layouts.pagination') }}
+          {{ $data->onEachSide(2)->appends(['keyword' => request()->keyword ])->links('alt::pagination') }}
         </x-slot>
 
       </x-alt-table>

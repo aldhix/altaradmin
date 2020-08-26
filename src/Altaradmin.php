@@ -6,48 +6,44 @@ use Auth;
 
 class Altaradmin
 {
- 
-   public static function resource($prefix = 'admin',$middleware=['auth:admin'])
+   public static function routes($prefix = 'admin', $middleware = null)
    {
-       Route::group([
+      Route::group([
+        'prefix' => $prefix,
+        'namespace'=>'Admin\Auth',
+        ], function() {
+          Route::get('login','AdminLoginController@showLoginForm')->name('admin.login');
+          Route::post('login','AdminLoginController@login');
+          Route::post('logout','AdminLoginController@logout')->name('admin.logout');
+      });
+    
+      Route::group([
             'prefix'=>$prefix,
             'middleware'=>['auth:admin'],
-            'namespace'=>'\Aldhix\\Altaradmin\\Controllers',
         ], function() {
             Route::get('admin/profile','AdminController@profile')->name('admin.profile');
             Route::put('admin/profile','AdminController@updateProfile');
        });
 
-       Route::group([
-            'prefix'=>$prefix,
-            'middleware'=>$middleware,
-            'namespace'=>'\Aldhix\\Altaradmin\\Controllers',
-        ], function() {
-            Route::resource('admin','AdminController',['except'=>['show']]);
-        });
-       
-       
+      if($middleware == null){
+        $middleware = ['auth:admin'];
+      } else {
+        $middleware = array_merge(['auth:admin'], $middleware);
+      }
+      Route::group([
+          'prefix'=>$prefix,
+          'middleware'=>$middleware,
+      ], function() {
+          Route::resource('admin','AdminController',['except'=>['show']]);
+      });
 
-       Route::get($prefix,'HomeAdminController@index')->name('admin.home')->middleware('auth:admin');
    }
 
-   public static function routes($prefix = 'admin')
-   {
-        Route::group([
-            'prefix'=>$prefix,
-            'namespace'=>'\Aldhix\\Altaradmin\\Controllers\\Auth',
-        ], function() {
-            Route::get('login','AdminLoginController@loginForm')->name('admin.login');
-            Route::post('login','AdminLoginController@login');
-            Route::post('logout','AdminLoginController@logout')->name('admin.logout');
-        });
-   }
-
-   public static function level(...$roles)
+   public static function role(...$roles)
    {
     
     $check = Auth::guard('admin')->check();
-    $level = Auth::guard('admin')->user()->level;
+    $level = Auth::guard('admin')->user()->role;
 
     if($check && in_array($level, $roles)) {
           return true;   

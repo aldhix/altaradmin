@@ -5,7 +5,7 @@ namespace Aldhix\Altaradmin\Middleware;
 use Closure;
 use Auth;
 
-class CheckAdminLevel
+class AltaradminRole
 {
     /**
      * Handle an incoming request.
@@ -17,14 +17,11 @@ class CheckAdminLevel
     public function handle($request, Closure $next, ... $roles)
     {
         $check = Auth::guard('admin')->check();
-        $level = Auth::guard('admin')->user()->level;
+        $level = Auth::guard('admin')->user()->role;
 
         if($check && in_array($level, $roles)) {
             return $next($request);    
         }
-
-
-        return abort(404);
-        
+        return abort(404);        
     }
 }

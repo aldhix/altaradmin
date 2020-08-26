@@ -1,11 +1,10 @@
 <?php
 
-namespace Aldhix\Altaradmin\Controllers;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Admin;
 use Illuminate\Http\Request;
-use Aldhix\Altaradmin\Models\Admin;
-use Aldhix\Altaradmin\Altaradmin as Alt;
+use Aldhix\Altaradmin\Altaradmin;
 use Hash;
 use Auth;
 
@@ -45,14 +44,14 @@ class AdminController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:admins'],
-            'level' => ['required', 'string'],
+            'role' => ['required', 'string'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
         Admin::create([
             'name' => $request['name'],
             'email' => $request['email'],
-            'level'=> $request['level'],
+            'role'=> $request['role'],
             'password' => Hash::make($request['password']),
         ]);
 
@@ -102,7 +101,7 @@ class AdminController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:admins,email,'.$admin->id],
-            'level' => ['required', 'string'],
+            'role' => ['required', 'string'],
             'password' => ['nullable', 'string', 'min:8', 'confirmed'],
         ]);
 
@@ -110,14 +109,14 @@ class AdminController extends Controller
             $query = [
                 'name' => $request['name'],
                 'email' => $request['email'],
-                'level'=> $request['level'],
+                'role'=> $request['role'],
                 'password' => Hash::make($request['password']),
             ];
         } else {
             $query = [
                 'name' => $request['name'],
                 'email' => $request['email'],
-                'level'=> $request['level'],
+                'role'=> $request['role'],
             ];
         }
 
@@ -162,7 +161,7 @@ class AdminController extends Controller
             $path = 'altar/images/profile/';
             $name = date('Ymdhis').'-'.rand(99,999);
             $source = $path.$name;
-            $filename = Alt::imagefitcrop($_FILES['photo'], $source);
+            $filename = Altaradmin::imagefitcrop($_FILES['photo'], $source);
             $filename = str_replace($path,'',$filename);
             $filename = !empty($filename) ? $filename : 'guest.png';
             if($admin->photo != 'guest.png'){

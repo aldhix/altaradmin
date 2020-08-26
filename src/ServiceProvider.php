@@ -23,16 +23,14 @@ class ServiceProvider extends Service
      * @return void
      */
     public function boot()
-    {
-        $this->loadViewsFrom(__DIR__.'/views', 'altar');
-        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
-        $this->loadFactoriesFrom(__DIR__.'/database/factories');
-
+    {   
+        $this->loadViewsFrom(__DIR__.'/resources/views/components', 'component');
         $this->publishes([
-            __DIR__.'/publish-controllers' => app_path('/Http/Controllers'),
-            __DIR__.'/views/altar' => resource_path('views/altar'),
-            __DIR__.'/public/altar' => public_path('/altar'),
-
+            __DIR__.'/app' => app_path('/'),
+            __DIR__.'/database' => database_path('/'),
+            __DIR__.'/resources' => resource_path('/'),
+            __DIR__.'/public' => public_path('/'),
         ]);
+        Blade::component('component::navbar.logout','alt-navbar-logout');
     }
 }

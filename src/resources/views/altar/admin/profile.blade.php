@@ -1,6 +1,6 @@
-@extends('altar.layouts.app')
+@extends('alt::page')
 @section('title','My Profile')
-@section('content-header')
+@section('heading')
 <i class="fas fa-user"></i>  My Profile
 @endsection
 @section('content')

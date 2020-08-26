@@ -1,6 +1,6 @@
-@extends('altar.layouts.app')
+@extends('alt::page')
 @section('title','Administrator')
-@section('content-header')
+@section('heading')
 <a href="{{ route('admin.index') }}" class="btn btn-secondary mr-2">
   <i class="fas fa-chevron-left"></i>
 </a> 
@@ -14,7 +14,7 @@ Administrator
          @csrf()
         <x-alt-input label="Full Name" name="name" inline="true" />
         <x-alt-input label="Email Address" name="email" type="email" inline="true" />
-        <x-alt-select label="Level Admin" name="level" 
+        <x-alt-select label="Role Admin" name="role" 
          :option="[
             ['value'=>'admin','label'=>'Administrator'],
             ['value'=>'current','label'=>'Current Admin'],

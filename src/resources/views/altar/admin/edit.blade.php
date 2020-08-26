@@ -1,6 +1,6 @@
-@extends('altar.layouts.app')
+@extends('alt::page')
 @section('title','Administrator')
-@section('content-header')
+@section('heading')
 <a href="{{ route('admin.index') }}" class="btn btn-secondary mr-2">
   <i class="fas fa-chevron-left"></i>
 </a>
@@ -15,7 +15,7 @@ Administrator
          @method('put')
         <x-alt-input label="Full Name" name="name" value="{{$data->name}}" inline="true" />
         <x-alt-input label="Email Address" name="email" type="email" value="{{$data->email}}" inline="true" />
-        <x-alt-select label="Level Admin" name="level" value="{{$data->level}}"
+        <x-alt-select label="Role Admin" name="role" value="{{$data->role}}"
          :option="[
             ['value'=>'admin','label'=>'Administrator'],
             ['value'=>'current','label'=>'Current Admin'],
