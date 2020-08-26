@@ -4,6 +4,7 @@ namespace Aldhix\Altaradmin;
 
 use Illuminate\Support\ServiceProvider as Service;
 use Illuminate\Support\Facades\Blade;
+use DB;
 
 class ServiceProvider extends Service
 {
@@ -23,7 +24,13 @@ class ServiceProvider extends Service
      * @return void
      */
     public function boot()
-    {   
+    {  
+        try {
+            DB::connection()->getPdo();
+        } catch (\Exception $e) {
+            die("Could not connect to the database.  Please check your configuration");
+        }
+        
         $this->loadViewsFrom(__DIR__.'/resources/views/components', 'component');
         $this->publishes([
             __DIR__.'/app' => app_path('/'),
