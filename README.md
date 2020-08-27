@@ -9,8 +9,7 @@ Paket Admin Auth dan Resource. Paket yang terintegrasi dengan Altar ([https://gi
 ## Instalasi
 Pastikan Altar ([https://github.com/aldhix/altar](https://github.com/aldhix/altar)) sudah terinstal dan sudah mengkonfigurasi koneksi database pada laravel di file `.env` dan `config/database.php` apabila tahap ini belum dilakukan jangan dulu ketahap berikutnya. 
 
-Instal terlebih dahulu Laravel/UI, apabila sudah menginstallnya silahkan lewati langkah ini. 
-`composer require laravel/ui`
+Instal terlebih dahulu Laravel/UI (`composer require laravel/ui`), apabila sudah menginstallnya silahkan lewati langkah ini. 
 
 ### Call Seeder
 Pada file`database\seeds\DatabaseSeeder.php` panggil seeder yand telah dibuat diatas.
