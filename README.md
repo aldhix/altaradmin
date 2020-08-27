@@ -60,7 +60,7 @@ Pada terminal lakukan perintah dibawah ini:
 
 ### Altaradmin Class
 
-Pengaturan level pada blade dengan perintah `Altaradmin::role('level_1',level_2','level_n')`, contoh role:
+Pengaturan role pada blade dengan perintah `Altaradmin::role('level_1',level_2','level_n')`, contoh menggunakan role di view:
 
 Contoh satu role :
 
@@ -68,9 +68,9 @@ Contoh satu role :
     ................
     @endif
   
-  Contoh lebih dari satu role: 
+Contoh lebih dari satu role: 
 
-    @if( Altaradmin::level('admin','editor') )
+    @if( Altaradmin::role('admin','editor') )
     ................
     @endif
 
