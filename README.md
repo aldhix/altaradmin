@@ -19,7 +19,7 @@ Pada file`database\seeds\DatabaseSeeder.php` panggil seeder yand telah dibuat di
     {
 	    $this->call(AdminSeeder::class);
     }
-### Middlware Authenticate & RedirectIfAuthenticated 
+### Middleware Authenticate & RedirectIfAuthenticated 
 Ubah dibagian middleware Authenticate di file `app\Http\Middleware\Authenticate.php` pada method `redirectTo` tambahkan perintah dibagian paling atas. Ini bertujuan apabila **user belum login** ketika mengakses prefix admin akan diredirect ke `route(admin.login)`.
 
     protected function redirectTo($request)
