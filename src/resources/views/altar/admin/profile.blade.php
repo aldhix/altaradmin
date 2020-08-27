@@ -1,4 +1,4 @@
-@extends('alt::page')
+@extends('altar::page')
 @section('title','My Profile')
 @section('heading')
 <i class="fas fa-user"></i>  My Profile

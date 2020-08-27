@@ -1,4 +1,4 @@
-@extends('alt::page')
+@extends('altar::page')
 @section('title','Administrator')
 @section('heading')
 <a href="{{ route('admin.index') }}" class="btn btn-secondary mr-2">

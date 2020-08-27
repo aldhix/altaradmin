@@ -1,5 +1,4 @@
-@extends('altar.auth.layout')
-@section('title','Login')
+@extends('altar::page-extra',['title'=>'Login','body_class'=>'login-page'])
 @section('content')
 <div class="login-box">
   <div class="login-logo">

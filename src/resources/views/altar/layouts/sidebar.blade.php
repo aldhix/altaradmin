@@ -1,18 +1,18 @@
 <x-slot name='logo'>
-	<a href="{{route('demo.index')}}" class="brand-link">
+	<a href="{{route('admin.home')}}" class="brand-link">
 		<img class="brand-image img-circle elevation-3" style="opacity: .8"
 		src="{{url('adminlte/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" />
-		<span class="brand-text font-weight-light">AdminLTE 3</span>
+		<span class="brand-text font-weight-light">{{ config('app.name') }}</span>
 	</a>
 </x-slot>
 
 <x-slot name="user">
 	<div class="image">
 		<img class="img-circle elevation-2"
-		 src="{{url('adminlte/dist/img/user2-160x160.jpg')}}" alt="User Image">
+		 src="{{url('altar/images/profile/'.Altaradmin::user()->photo)}}" alt="{{Altaradmin::user()->name}}">
 	</div>
 	<div class="info">
-		<a href="#" class="d-block">Alexander Pierce</a>
+		<a href="{{route('admin.profile')}}" class="d-block">{{Altaradmin::user()->name}}</a>
 	</div>
 </x-slot>
 

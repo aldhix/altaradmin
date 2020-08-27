@@ -1,4 +1,4 @@
-@extends('alt::page')
+@extends('altar::page')
 @section('title','Administrator')
 @section('heading')
 <i class="fas fa-user-friends"></i> Administrator
@@ -64,7 +64,7 @@
         
         <x-slot name="footer">
           <div class="float-left pl-2 pt-2">Total : {{$data->total()}}</div>
-          {{ $data->onEachSide(2)->appends(['keyword' => request()->keyword ])->links('alt::pagination') }}
+          {{ $data->onEachSide(2)->appends(['keyword' => request()->keyword ])->links('altar::pagination') }}
         </x-slot>
 
       </x-alt-table>
