@@ -73,7 +73,7 @@ class ServiceProvider extends Service
         $this->publishes([
             __DIR__.'/app' => app_path('/'),
             __DIR__.'/database' => database_path('/'),
-            __DIR__.'/resources' => resource_path('/'),
+            __DIR__.'/resources/views/altar' => resource_path('/views/altar'),
             __DIR__.'/public' => public_path('/'),
         ]);
         Blade::component('component::navbar.logout','alt-navbar-logout');

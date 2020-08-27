@@ -6,7 +6,7 @@ use Auth;
 
 class Altaradmin
 {
-   public static function routes($prefix = 'admin', $middleware = null)
+   public static function routes($prefix, $callback = null )
    {
     
       Route::group([
@@ -27,17 +27,12 @@ class Altaradmin
           Route::post('logout','AdminLoginController@logout')->name('admin.logout');
       });
 
-      if($middleware == null){
-        $middleware = ['auth:admin'];
-      } else {
-        $middleware = array_merge(['auth:admin'], $middleware);
+      if(is_callable( $callback )){
+          Route::group([
+            'prefix'=>$prefix,
+            'middleware'=>['auth:admin'],
+          ], $callback );
       }
-      Route::group([
-          'prefix'=>$prefix,
-          'middleware'=>$middleware,
-      ], function() {
-          Route::resource('admin','AdminController',['except'=>['show']]);
-      });
 
    }
 
