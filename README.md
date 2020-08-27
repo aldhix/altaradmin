@@ -40,7 +40,7 @@ Masih pada bagian middleware ubah RedirectIfAuthenticated pada file `app\Http\Mi
 	    ................
     }
 ### Routes
-Pada `routes\web.php` tambahkan perintah. Langkah ini untuk memanggil route admin. Bertujuan untuk mengujicoba
+Lakukan penambahan route pada `routes\web.php` tambahkan perintah.
 
     Altaradmin::routes('admin',function(){
     	Demo::routes();
@@ -48,7 +48,7 @@ Pada `routes\web.php` tambahkan perintah. Langkah ini untuk memanggil route admi
     });
 
 ### Command
-Pada terminal lakukan perintah dibawah ini  :
+Pada terminal lakukan perintah dibawah ini:
 
     composer require aldhix/altaradmin
     php artisan vendor:publish --provider=Aldhix\Altaradmin\ServiceProvider --force
@@ -60,20 +60,21 @@ Pada terminal lakukan perintah dibawah ini  :
 
 ### Altaradmin Class
 
-Pengaturan level pada blade dengan perintah `Altaradmin::role('level_1',level_2','level_n')`, contoh role  :
+Pengaturan level pada blade dengan perintah `Altaradmin::role('level_1',level_2','level_n')`, contoh role:
+
 Contoh satu role :
 
     @if( Altaradmin::role('admin') )
     ................
     @endif
   
-  Contoh lebih dari satu role : 
+  Contoh lebih dari satu role: 
 
     @if( Altaradmin::level('admin','editor') )
     ................
     @endif
 
-Daftar Route yang terdapat pada `Altaradmin::routes(prefix, callback)` pada route Altaradmin ini sudah menggunakan middleware` auth:admin` :
+Daftar Route yang terdapat pada `Altaradmin::routes(prefix, callback)` pada route Altaradmin ini sudah menggunakan middleware` auth:admin`:
 
 | Method | Route Name | 
 |--|--|
@@ -85,12 +86,12 @@ Daftar Route yang terdapat pada `Altaradmin::routes(prefix, callback)` pada rout
 Route resource admin gunakan perintahnya `Route::resource('admin','AdminController')`
 
 ### Middleware AltaradminRole
-Memberi batasan akses dapat menggunakan middleware `altaradmin.role:role_1, role_2, role_n`, contoh role diakses oleh super dan admin :
+Memberi batasan akses dapat menggunakan middleware `altaradmin.role:role_1, role_2, role_n`, contoh role diakses oleh super dan admin:
 
     Route::resource('admin', 'AdminController')->middleware(['altaradmin.role:super,admin']);
 
 ### Logout
-Membuat logout gunakan form yang disembuyikan dengan method post contoh menggunakan link :
+Membuat logout gunakan form yang disembuyikan dengan method post contoh menggunakan link:
 
     <a href="{{route('admin.logout')}}" 
 	    onclick="event.preventDefault(); document.getElementById('logout-page').submit();" 
