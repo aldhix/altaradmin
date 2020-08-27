@@ -87,8 +87,7 @@ Route resource admin gunakan perintahnya `Route::resource('admin','AdminControll
 ### Middleware AltaradminRole
 Memberi batasan akses dapat menggunakan middleware `altaradmin.role:role_1, role_2, role_n`, contoh role diakses oleh super dan admin :
 
-    Route::resource('admin', 'AdminController')
-		   ->middleware(['altaradmin.role:super,admin']);
+    Route::resource('admin', 'AdminController')->middleware(['altaradmin.role:super,admin']);
 
 ### Logout
 Membuat logout gunakan form yang disembuyikan dengan method post contoh menggunakan link :
