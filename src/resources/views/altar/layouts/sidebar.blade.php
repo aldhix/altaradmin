@@ -22,6 +22,11 @@
 	<li class="nav-header">COMPONENTS</li>
 	<x-alt-sidebar-menu label="Form" :href="route('demo.form')" icon="far fa-list-alt"  />
 	<x-alt-sidebar-menu label="Tabel" :href="route('demo.table')" icon="fas fa-th-list"  />
+	<x-alt-sidebar-menu label="Extra" is="demo*" icon="far fa-plus-square" :treeview="true">
+		<x-alt-sidebar-submenu label="Login" :href="route('demo.login')" />
+		<x-alt-sidebar-submenu label="Error 404" :href="route('demo.404')" />
+		<x-alt-sidebar-submenu label="Error 505" :href="route('demo.505')" />
+	</x-alt-sidebar-menu>
 
 	<li class="nav-header">SETTINGS</li>
 	@if(Altaradmin::role('super','admin'))
