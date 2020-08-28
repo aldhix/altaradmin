@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Admin;
 use Illuminate\Http\Request;
-use Aldhix\Altaradmin\Altaradmin;
+use Aldhix\Altar\Altar;
 use Hash;
 use Auth;
 
@@ -151,20 +151,18 @@ class AdminController extends Controller
         $admin = Auth::guard('admin')->user();
 
         $request->validate([
-            'photo'=> ['nullable','mimetypes:image/png,image/jpeg'],
+            'photo'=> ['nullable','mimetypes:image/png,image/jpeg','dimensions:min_width=200, min_height=200'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:admins,email,'.$admin->id],
             'password' => ['nullable', 'string', 'min:8', 'confirmed'],
         ]);
 
         if( !empty($request->photo) ){
+            $file = $_FILES["photo"];
             $path = 'altar/images/profile/';
-            $name = date('Ymdhis').'-'.rand(99,999);
-            $source = $path.$name;
-            $filename = Altaradmin::imagefitcrop($_FILES['photo'], $source);
-            $filename = str_replace($path,'',$filename);
-            $filename = !empty($filename) ? $filename : 'guest.png';
-            if($admin->photo != 'guest.png'){
+            $filename = date('Ymdhis').'-'.rand(99,999).'.'.$request->photo->getClientOriginalExtension();
+            $save = $path.$filename;
+            if( Altar::imagefit($file, $save) && $admin->photo != 'guest.png'){
                 unlink($path.$admin->photo);
             }
         }

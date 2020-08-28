@@ -17,7 +17,12 @@
     <x-alt-form-card method="post" action="{{ route('admin.profile') }}" enctype="multipart/form-data">
          @csrf()
          @method('put')
-        <x-alt-input-img name="photo" id="photo" value="{{url('altar/images/profile/'.$data->photo) }}" :inline="true" label=" " />
+        <x-alt-input-img name="photo" id="photo" 
+          value="{{url('altar/images/profile/'.$data->photo) }}" :inline="true" label=" ">
+          <x-slot name="feedback">
+            <div class="form-text text-muted">Photo dimension min Width: 200px, min Height: 200px</div>
+          </x-slot>
+        </x-alt-input-img>
         <x-alt-input label="Full Name" name="name" value="{{$data->name}}" inline="true" />
         <x-alt-input label="Email Address" name="email" type="email" value="{{$data->email}}" inline="true" />
         <x-alt-input label="New Password" name="password" type="password" inline="true">
