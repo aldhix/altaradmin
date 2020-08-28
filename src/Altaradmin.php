@@ -81,21 +81,20 @@ class Altaradmin
         imagecopyresampled($save_image,$orig_image,0,0,0,0, $new_width, $new_height, $width,$height);
         $x=0;
         $y=0;
+        
         if($new_width  > $new_height) {
             $x = floor(($new_width-$fit_size) /2);
         } else {
             $y = floor(($new_height-$fit_size) /2);
         }
+
         $save_image = imagecrop($save_image, ['x' => $x, 'y' => $y, 'width' => $fit_size, 'height' => $fit_size ]);
-        
-        if($type == 'jpeg'){
-          $filename = "{$filename}.jpg";
-          imagejpeg($save_image,$filename);
-        } else {
-          $filename = "{$filename}.png";
-          imagejpeg($save_image,$filename);
-        }
+
+        $filename = "{$filename}.jpg";
+        imagejpeg($save_image,$filename);
+
         imagedestroy($save_image);
+
         return $filename;
       } else {
         return null;

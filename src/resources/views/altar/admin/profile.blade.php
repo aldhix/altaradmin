@@ -13,21 +13,11 @@
 @endif
 
 <div class="row">
-	<div class="col-md-6">
-		<x-alt-form-card method="post" action="{{ route('admin.profile') }}" enctype="multipart/form-data">
+  <div class="col-md-6">
+    <x-alt-form-card method="post" action="{{ route('admin.profile') }}" enctype="multipart/form-data">
          @csrf()
          @method('put')
-        <div class="form-group row">
-          <div class="col-8 offset-4">
-              <div class="img-preview img-thumbnail" 
-              data-src="{{url('altar/images/profile/'.$data->photo) }}"
-              style="background-image:url({{url('altar/images/profile/'.$data->photo) }})">
-                  <div class="btn btn-sm img-remove btn-light">&#10060;</div>
-                  <div class="btn btn-sm btn-info img-find"><i class="fas fa-search"></i></div>
-              </div>
-              <x-alt-input name="photo" class="photo" type="file" :form-group="false" accept="image/png, image/jpeg"/>
-          </div>
-        </div>
+        <x-alt-input-img name="photo" id="photo" value="{{url('altar/images/profile/'.$data->photo) }}" :inline="true" label=" " />
         <x-alt-input label="Full Name" name="name" value="{{$data->name}}" inline="true" />
         <x-alt-input label="Email Address" name="email" type="email" value="{{$data->email}}" inline="true" />
         <x-alt-input label="New Password" name="password" type="password" inline="true">
@@ -41,14 +31,19 @@
           <x-alt-button btn="primary"><i class="fas fa-database"></i> Update My Profile</x-alt-button>
         </x-slot>
       </x-alt-form-card>
-	</div>
+  </div>
 </div>
 @endsection
 
 @push('css')
-<link rel="stylesheet" href="{{url('altar/css/profile-preview.css')}}">
+<link rel="stylesheet" href="{{url('altar/input-img/css/input-img.css')}}">
 @endpush
 
 @push('js')
-<script src="{{ url('altar/js/profile-preview.js') }}"></script>
+<script src="{{ url('altar/input-img/js/input-img.js') }}"></script>
+<script type="text/javascript">
+$(function(){
+  $('#photo').inputImg();
+});
+</script>
 @endpush
