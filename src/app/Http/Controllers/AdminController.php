@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Admin;
 use Illuminate\Http\Request;
-use Aldhix\Altar\Altar;
+use Altar;
 use Hash;
 use Auth;
 
