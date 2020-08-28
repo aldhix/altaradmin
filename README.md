@@ -14,7 +14,7 @@ Instal terlebih dahulu Laravel/UI :
 `composer require laravel/ui`
 
 ### Call Seeder
-Pada file`database\seeds\DatabaseSeeder.php` panggil seeder yand telah dibuat diatas.
+Pada file`database\seeds\DatabaseSeeder.php` panggil seeder `AdminSeeder::class`.
 
     public function run()
     {
