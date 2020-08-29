@@ -51,6 +51,15 @@ Lakukan penambahan route pada `routes\web.php` tambahkan perintah.
     	Route::resource('admin', 'AdminController')->middleware(['altaradmin.role:super,admin']);
     });
 
+### Run
+Pada terminal jalankan serve :
+
+`php artisan serv`
+
+Pada web browser ketikan alamat  [http://localhost:8000/admin/login](http://localhost:8000/admin/login)  , login dengan :
+
+    email : admin@localhost.com
+    password : password
 
 ## Fitur
 
