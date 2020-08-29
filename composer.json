@@ -1,6 +1,10 @@
 {
     "name": "aldhix/altaradmin",
     "description": "Paket Admin Auth dan Resource",
+    "keywords": [
+        "aldhix",
+        "altaradmin"
+    ],
     "type": "library",
     "license": "MIT",
     "authors": [
