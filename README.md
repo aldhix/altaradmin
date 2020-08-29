@@ -33,13 +33,6 @@ Masih pada bagian middleware ubah RedirectIfAuthenticated pada file `app\Http\Mi
 	    }
 	    ................
     }
-### Routes
-Lakukan penambahan route pada `routes\web.php` tambahkan perintah.
-
-    Altaradmin::routes('admin',function(){
-    	Demo::routes();
-    	Route::resource('admin', 'AdminController')->middleware(['altaradmin.role:super,admin']);
-    });
 
 ### Command
 Pada terminal lakukan perintah dibawah ini:
@@ -49,6 +42,15 @@ Pada terminal lakukan perintah dibawah ini:
     composer dump-autoload
     php artisan migrate
     php artisan db:seed
+
+### Routes
+Lakukan penambahan route pada `routes\web.php` tambahkan perintah.
+
+    Altaradmin::routes('admin',function(){
+    	Demo::routes();
+    	Route::resource('admin', 'AdminController')->middleware(['altaradmin.role:super,admin']);
+    });
+
 
 ## Fitur
 
