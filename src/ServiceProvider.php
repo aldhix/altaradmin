@@ -61,11 +61,11 @@ class ServiceProvider extends Service
      */
     public function boot()
     {  
-        try {
+        /*try {
             DB::connection()->getPdo();
         } catch (\Exception $e) {
             die("Could not connect to the database.  Please check your configuration");
-        }
+        }*/
 
         Schema::defaultStringLength(191);
         
